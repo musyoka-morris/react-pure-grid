@@ -1,0 +1,15 @@
+{
+  "name": "react-pure-grid",
+  "version": "1.0.0",
+  "authors": [
+    "Musyoka Morris <musyokamorris@gmail.com>"
+  ],
+  "license": "GNU",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
