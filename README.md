@@ -13,7 +13,7 @@ npm install react-pure-grid
 ## Usage
 Using React-Pure-Grid is very straightforward. Once react-pure-grid is included in your project, you can use the components this way:
 
-```
+```js
 const {Container, Row, Col} = require('react-pure-grid');
 
 const App = React.createClass({
