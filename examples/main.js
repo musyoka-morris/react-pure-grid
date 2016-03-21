@@ -4,35 +4,29 @@ const { render } = require('react-dom');
 
 const Style = {
     row : {
-        paddingTop: 20,
+        paddingTop: 6,
         paddingBottom: 20,
         borderBottom: '1px dotted #00bcd4'
     },
 
     col: {
-        background: '#00bcd4',
         textAlign: 'center',
         borderRadius: 5,
-        paddingTop: 30,
-        paddingBottom: 30,
-        paddingRight: 8,
-        paddingLeft: 8,
-        marginBottom: 8
+        paddingTop: 8,
+        paddingBottom: 8,
+        paddingRight: 4,
+        paddingLeft: 4,
+        marginBottom: 4,
+        fontSize: 12,
+        fontWeight: 'bold',
+        border: '1px solid silver'
     }
 };
 
-function paddedCol(padding) {
+function tallCol(height) {
     return {
         ...Style.col,
-        paddingTop: padding,
-        paddingBottom: padding
-    };
-}
-
-function nestedCol() {
-    return {
-        ...paddedCol(15),
-        background: '#ff4081'
+        height: height
     };
 }
 
@@ -52,19 +46,19 @@ const SimpleGrid = (
             <Col xs={4} style={Style.col}>gutter:1</Col>
         </Row>
         <Row style={Style.row} align="start">
-            <Col xs={4} style={paddedCol(50)}>align: start</Col>
-            <Col xs={4} style={paddedCol(20)}>align: start</Col>
-            <Col xs={4} style={paddedCol(70)}>align: start</Col>
+            <Col xs={4} style={tallCol(50)}>align: start</Col>
+            <Col xs={4} style={tallCol(20)}>align: start</Col>
+            <Col xs={4} style={tallCol(70)}>align: start</Col>
         </Row>
         <Row style={Style.row} align="center">
-            <Col xs={4} style={paddedCol(50)}>align: center</Col>
-            <Col xs={4} style={paddedCol(20)}>align: center</Col>
-            <Col xs={4} style={paddedCol(70)}>align: center</Col>
+            <Col xs={4} style={tallCol(50)}>align: center</Col>
+            <Col xs={4} style={tallCol(20)}>align: center</Col>
+            <Col xs={4} style={tallCol(70)}>align: center</Col>
         </Row>
         <Row style={Style.row} align="end">
-            <Col xs={4} style={paddedCol(50)}>align: top</Col>
-            <Col xs={4} style={paddedCol(20)}>align: top</Col>
-            <Col xs={4} style={paddedCol(70)}>align: top</Col>
+            <Col xs={4} style={tallCol(50)}>align: top</Col>
+            <Col xs={4} style={tallCol(20)}>align: top</Col>
+            <Col xs={4} style={tallCol(70)}>align: top</Col>
         </Row>
         <Row style={Style.row} justify="start">
             <Col xs={3} style={Style.col}>justify: start</Col>
@@ -88,11 +82,11 @@ const SimpleGrid = (
             <Col xs={3} style={Style.col}>Reverse #4</Col>
         </Row>
         <Row style={Style.row}>
-            <Col md={6} style={paddedCol(15)}>
+            <Col md={6} style={Style.col}>
                 <Row gutter={5}>
-                    <Col style={nestedCol()}>Nested columns</Col>
-                    <Col md={6} style={nestedCol()}>Nested</Col>
-                    <Col md={6} style={nestedCol()}>Nested</Col>
+                    <Col style={Style.col}>Nested columns</Col>
+                    <Col md={6} style={Style.col}>Nested</Col>
+                    <Col md={6} style={Style.col}>Nested</Col>
                 </Row>
             </Col>
             <Col md={6} style={Style.col}>
