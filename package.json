@@ -1,7 +1,15 @@
 {
   "name": "react-pure-grid",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.3",
+  "description": "A set of React components bootstrap responsive layout, AND not dependent on any css file",
+  "homepage": "https://github.com/musyoka-morris/react-pure-grid",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/musyoka-morris/react-pure-grid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/musyoka-morris/react-pure-grid/issues"
+  },
   "main": "index.js",
   "dependencies": {
     "react": "^0.14.7",
@@ -18,13 +26,28 @@
     "build": "browserify -t [ babelify --presets [ es2015 stage-2 react ] ] examples/main.js -o examples/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "react-component",
+    "responsive grid",
+    "bootstrap grid",
+    "bootstrap layout",
+    "flexbox",
+    "grid",
+    "react",
+    "browser"
+  ],
   "author": "Musyoka Morris <musyokamorris@gmail.com>",
-  "license": "GNU",
+  "license": "MIT",
   "babel": {
     "presets": [
       "es2015",
-      "react"
+      "react",
+      "stage-2"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
     ]
   }
 }

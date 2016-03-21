@@ -21,7 +21,10 @@ const App = React.createClass({
     return (
       <Container>
         <Row>
-          <Col xs={6} md={3}>Hello, world!</Col>
+          <Col xs={6} md={4} lg={3}>Hello, world!</Col>
+        </Row>
+        <Row>
+            <Col xsOffset={5} xs={7}>Welcome!</Col>
         </Row>
       </Container>
     );
