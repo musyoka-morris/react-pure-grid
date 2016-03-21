@@ -1,6 +1,6 @@
 {
   "name": "react-pure-grid",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A set of React components imitating bootstrap responsive layout, AND not dependent on any css file",
   "homepage": "https://github.com/musyoka-morris/react-pure-grid",
   "repository": {
