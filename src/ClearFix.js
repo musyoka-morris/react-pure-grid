@@ -1,27 +1,37 @@
-import {getIndex, KeyMap} from './Grid';
-const React = require('react');
+import React, {PropTypes} from 'react';
+import GridComponent from './GridComponent';
 
-export default React.createClass({
-    propTypes: {
-        xs: React.PropTypes.bool,
-        sm: React.PropTypes.bool,
-        md: React.PropTypes.bool,
-        lg: React.PropTypes.bool
-    },
+/**
+ * PropTypes: Any key in the breakpoints object, As provided by the PureGridProvider, whose value should be boolean
+ * The boolean value determines whether the component should be rendered at that particular break point.
+ * Defaults to {true} for all breakPoints
+ */
+export default class ClearFix extends GridComponent {
 
+    /**
+     * Determines whether this component is to be rendered with respect to the browser width
+     * To disable render, pass a breakpoint key as props with the value false
+     * 
+     * Example: <ClearFix xs={false} />
+     * @returns {boolean}
+     */
     isVisible() {
-        const key = KeyMap[getIndex()];
-        if ( this.props.hasOwnProperty(key) ) {
-            return !!this.props[key];
+        const {breakPoints} = this.contextProps();
+        for ( let key in breakPoints ) {
+            if ( breakPoints.hasOwnProperty(key) &&
+                    this.props.hasOwnProperty(key) &&
+                    this.isInside(breakPoints[key]) ) {
+                return this.props[key];
+            }
         }
-
-        return !KeyMap.some((nKey) => {
-            return this.props.hasOwnProperty(nKey) && this.props[nKey];
-        });
-    },
+        
+        //Defaults to true
+        return true;
+    }
 
     render() {
         const Style = {display: 'block'};
         return this.isVisible()? <div style={Style}></div> : null;
     }
-});
+    
+}

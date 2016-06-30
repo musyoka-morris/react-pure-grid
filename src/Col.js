@@ -1,74 +1,53 @@
-import {KeyMap, OffsetMap, getIndex} from './Grid';
-const React = require('react');
+import React from 'react';
+import GridComponent from './GridComponent';
 
-function getState() {
-    return { index: getIndex() };
-}
-
-export default React.createClass({
-
-    propTypes: {
-        gutter: React.PropTypes.number.isRequired
-    },
-
-    getInitialState() {
-        return getState();
-    },
-
-    componentWillReceiveProps() {
-        this.setState(getState());
-    },
-
-    calculateSize(map) {
-        const {index} = this.state;
-        for ( let i = index; i < map.length; i++ ) {
-            const key = map[i];
-            if ( this.props.hasOwnProperty(key) ) {
-                const cols = this.props[key];
-                return (cols/12)*100;
-            }
-        }
-        return -1;
-    },
-
-    getWidth() {
-        const width = this.calculateSize(KeyMap);
-        return width < 0? 100 : width;
-    },
-
-    getOffset() {
-        const offset = this.calculateSize(OffsetMap);
-        return Math.max(offset, 0);
-    },
-
+export default class Col extends GridComponent {
+    
     getStyle() {
-        const {gutter} = this.props;
+        const {breakPoints, gutterSize} = this.contextProps();
+        const percentage = (suffix = '') => {
+            for ( let key in breakPoints ) {
+                if ( breakPoints.hasOwnProperty(key) && this.isInside(breakPoints[key]) ) {
+                    let propName = key + suffix;
+                    if ( this.props.hasOwnProperty(propName) ) {
+                        const cols = this.props[propName];
+                        return (cols/12)*100;
+                    }
+                }
+            }
+            return 100;
+        };
+        const width = percentage();
+        const offset = percentage('Offset');
+        
         return {
             main: {
                 padding: 0,
                 margin: 0,
-                marginLeft: this.getOffset() + '%',
-                width: this.getWidth() + '%'
+                marginLeft: (offset == 100? 0 : offset) + '%',
+                width: width + '%'
             },
             inner: {
                 marginTop: 0,
                 marginBottom: 0,
-                marginRight: gutter,
-                marginLeft: gutter,
+                marginRight: gutterSize,
+                marginLeft: gutterSize,
                 padding: 0,
                 position: 'relative'
             }
-        }
-    },
+        };
+    }
 
     render() {
         const Styles = this.getStyle();
-        return <div style={Styles.main}>
-            <div style={Styles.inner}>
-                <div {...this.props}>
-                    {this.props.children}
+        return (
+            <div style={Styles.main}>
+                <div style={Styles.inner}>
+                    <div {...this.props}>
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
-        </div>;
+        );
     }
-});
+}

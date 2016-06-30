@@ -1,84 +1,44 @@
-import {listen, unListen} from './Grid';
-import Col from './Col';
-const React = require('react');
+import React, {PropTypes} from 'react';
+import GridComponent from './GridComponent';
 
-const positionMap = ['start', 'end', 'center'];
-const positionPropType = React.PropTypes.oneOf(positionMap);
+export default class Row extends GridComponent {
+    
+    static propTypes = {
+        justify: PropTypes.oneOf(['start', 'end', 'center']),
+        align: PropTypes.oneOf(['start', 'end', 'center']),
+        reverse: PropTypes.bool
+    };
 
-function mustBeCols(props, propName, componentName) {
-    const prop = props[propName];
-    let error = null;
-    React.Children.forEach(prop, (el) => {
-        if ( error ) return;
-        if ( el.type != Col ) {
-            error = new Error(`${componentName} should only have children of type ${Col.displayName}.`);
-        }
-    });
-    return error;
-}
+    static defaultProps = {
+        justify: 'start',
+        align: 'start',
+        reverse: false
+    };
 
-function flexPosition(given) {
-    if ( positionMap.indexOf(given) < 0 ) return '';
-    return given == 'center'? given : `flex-${given}`;
-}
+    render() {
+        const {gutterSize} = this.contextProps();
+        const {justify, align, reverse, ...others} = this.props;
+        const position = (g) => (g == 'center'? g : `flex-${g}`);
 
-export default React.createClass({
-    propTypes: {
-        gutter: React.PropTypes.number,
-        justify: positionPropType,
-        align: positionPropType,
-        reverse: React.PropTypes.bool,
-        children: mustBeCols
-    },
-
-    getDefaultProps() {
-        return {
-            gutter: 15,
-            justify: 'start',
-            align: 'start',
-            reverse: false
-        };
-    },
-
-    getStyle() {
-        const {gutter, justify, align, reverse} = this.props;
-        return {
-            marginLeft: -gutter,
-            marginRight: -gutter,
+        const style = {
+            marginLeft: -gutterSize,
+            marginRight: -gutterSize,
             marginTop: 0,
             marginBottom: 0,
             padding: 0,
             display: 'flex',
             flexDirection: reverse? 'row-reverse' : 'row',
             flexWrap: 'wrap',
-            justifyContent: flexPosition(justify),
-            alignItems: flexPosition(align)
+            justifyContent: position(justify),
+            alignItems: position(align)
         };
-    },
-
-    handleWindowResize() {
-        this.forceUpdate();
-    },
-
-    componentDidMount() {
-        listen(this.handleWindowResize);
-    },
-
-    componentWillUnmount() {
-        unListen(this.handleWindowResize);
-    },
-
-
-    render() {
-        const {gutter, children} = this.props;
-        const style = this.getStyle();
 
         return (
-            <div {...this.props}>
+            <div {...others}>
                 <div style={style} >
-                    {React.Children.map(children, (child) => React.cloneElement(child, {gutter}))}
+                    {this.props.children}
                 </div>
             </div>
         );
     }
-});
+}

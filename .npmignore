@@ -1,0 +1,7 @@
+logs
+*.log
+.grunt
+.idea
+.git
+node_modules/
+jspm_packages/

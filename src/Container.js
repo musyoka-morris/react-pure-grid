@@ -1,44 +1,41 @@
-import {ContainerWidthMap, getIndex, listen, unListen} from './Grid';
-const React = require('react');
+import React, {PropTypes} from 'react';
+import GridComponent from './GridComponent';
 
-export default React.createClass({
-    propTypes: {
-        fluid: React.PropTypes.bool
-    },
+export default class Container extends GridComponent {
 
-    getInitialState() {
-        return this.getState();
-    },
+    static propTypes = {
+        fluid: PropTypes.bool
+    };
 
-    getDefaultProps() {
-        return { fluid: false };
-    },
-
+    static defaultProps = {
+        fluid: true
+    };
+    
     getStyle() {
+        const {fluid} = this.props;
+        const {breakPoints, maxWidth} = this.contextProps();
+        let width = 600;
+        for ( let key in breakPoints ) {
+            if ( breakPoints.hasOwnProperty(key) && this.isInside(breakPoints[key]) ) {
+                width = breakPoints[key].container;
+                break;
+            }
+        }
+        
         return {
             margin: 'auto',
-            width: this.props.fluid? 'auto' : ContainerWidthMap[getIndex()],
-            maxWidth: ContainerWidthMap[0]
+            width: fluid? 'auto' : width,
+            maxWidth: isNaN(width)? maxWidth : Math.min(width, maxWidth)
         };
-    },
-
-    getState() {
-        return { style: this.getStyle() };
-    },
-
-    handleWindowResize() {
-        this.setState(this.getState());
-    },
-
-    componentDidMount() {
-        listen(this.handleWindowResize);
-    },
-
-    componentWillUnmount() {
-        unListen(this.handleWindowResize);
-    },
+    }
 
     render() {
-        return <div style={this.state.style}>{this.props.children}</div>;
+        const style = this.getStyle();
+        return (
+            <div style={style}>
+                <div {...this.props}>
+                    {this.props.children}
+                </div>
+            </div>);
     }
-});
+}
