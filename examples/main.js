@@ -1,8 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
+import prefix from '../src/prefix';
 import {PureGridProvider, Container, Row, Col, ClearFix} from '../index';
 
-const Style = {
+const Style = prefix({
     row : {
         paddingTop: 6,
         paddingBottom: 20,
@@ -25,7 +26,8 @@ const Style = {
         borderStyle: "solid",
         borderColor: "silver"
     }
-};
+});
+
 
 const newBreakPoints = {
     a: {

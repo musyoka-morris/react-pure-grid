@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import prefix from './prefix';
 import GridComponent from './GridComponent';
 
 export default class Container extends GridComponent {
@@ -30,7 +31,7 @@ export default class Container extends GridComponent {
     }
 
     render() {
-        const style = this.getStyle();
+        const style = prefix(this.getStyle());
         return (
             <div style={style}>
                 <div {...this.props}>

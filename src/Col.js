@@ -1,4 +1,5 @@
 import React from 'react';
+import prefix from './prefix';
 import GridComponent from './GridComponent';
 
 export default class Col extends GridComponent {
@@ -39,7 +40,7 @@ export default class Col extends GridComponent {
     }
 
     render() {
-        const Styles = this.getStyle();
+        const Styles = prefix(this.getStyle());
         return (
             <div style={Styles.main}>
                 <div style={Styles.inner}>

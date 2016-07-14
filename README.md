@@ -32,16 +32,27 @@ Beginning with v2.0.0, Styling the grid system to your liking is simple and hass
 
 The following are the possible customizations:
 
-| prop                      | default   | explanation |
-| :------------------------ | :-------- | :---------- |
-| **gutterSize**            | `15`      | The gutter size to separate cols |
-| **maxWidth**              | `1170`    | Maximum container width |
-| **breakPoints**           | *As Given Below* | **browser**: *The browser width*, <br/> **container**: *Width to apply to container* |
-| **replaceBreakPoints**    | `false`   | This determines whether to merge or replace the provided `breakPoints` with the `default breakPoints` <br/> *We highly recommend you leave this untouched*  |
+###props
+**gutterSize** `number` `[default = 15]`
+The gutter size to separate cols 
 
+**maxWidth** `number` `[default = 1170]`
+Maximum container width
 
-##### Default breakPoints
+**replaceBreakPoints** `boolean` `[default = false]`
+This determines whether to merge or replace the provided `breakPoints` with the `default breakPoints`. *We highly recommend you leave this untouched*
+
+**breakPoints** `object`
+Each entry is an object containing two keys:
 ```js
+{
+    browser     : number, /* The browser width */
+    container   : number, /* The width to apply to a container within this breakpoint */
+}
+```
+
+```js
+// Default breakPoints
 {
    lg: {
       browser: 1200,
@@ -104,26 +115,32 @@ export default MyAwesomeReactComponent;
 ##Components
 
 ### 1. Container
-| prop                      | default   | explanation |
-| :------------------------ | :-------- | :---------- |
-| **fluid**            | `true`      | Fluid or Fixed-Width layout |
+**fluid**  `boolean`  `[default = true]`
+Fluid or Fixed-Width layout
 
 ### 2. Row
-| prop                      | default   | explanation |
-| :------------------------ | :-------- | :---------- |
-| **reverse**            | `false`      | Set to `true` to output `Cols` in reverse order |
-| **align**            | `start`      | Accepts either `start | center | end` <br/> Vertical alignment of `Cols` with varying heights |
-| **justify**            | `start`      | Accepts either `start | center | end` <br/> Horizontal alignment of `Cols` when they don't occupy full width |
+**reverse**  `boolean`  `[default = false]`
+Set to `true` to output `Cols` in reverse order 
+
+**align**  `string`  `[default = start]`
+Accepts one of `start|center|end`. Vertical alignment of Cols with varying heights
+
+**justify**  `string`  `[default = start]`
+Accepts one of `start|center|end`. Horizontal alignment of Cols when they don't occupy full width
+
 
 ### 3. Col
-| prop                      | Accepts   | explanation |
-| :------------------------ | :-------- | :---------- |
-| **\***          | number | Number of columns [1-12] to use as `Col` width |
-| ***Offset**            | number | Number of columns [1-12] to offset |
+**\***  `number` 
+Number of columns [1-12] to use as `Col` width
 
-**Note**: *__\*__ is a key in `breakPoints` object*
+**\*Offset**  `number` 
+Number of columns [1-12] to offset
 
+
+**Note**: _**\*** is a key in `breakPoints` object_
 **Example**: `<Col md={4} xsOffset={2}>Col Content</Col>`
+
+
 
 ## Browser Support
 Supported in all major browsers

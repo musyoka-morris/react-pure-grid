@@ -1,6 +1,6 @@
 {
   "name": "react-pure-grid",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A highly customizable set of React components that mirror bootstrap responsive grid system, AND not dependent on any css file",
   "homepage": "https://github.com/musyoka-morris/react-pure-grid",
   "repository": {
@@ -12,6 +12,7 @@
   },
   "main": "index.js",
   "dependencies": {
+    "inline-style-prefixer": "^2.0.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8"
   },

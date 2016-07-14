@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import prefix from './prefix';
 import GridComponent from './GridComponent';
 
 export default class Row extends GridComponent {
@@ -20,7 +21,7 @@ export default class Row extends GridComponent {
         const {justify, align, reverse, ...others} = this.props;
         const position = (g) => (g == 'center'? g : `flex-${g}`);
 
-        const style = {
+        const style = prefix({
             marginLeft: -gutterSize,
             marginRight: -gutterSize,
             marginTop: 0,
@@ -31,7 +32,7 @@ export default class Row extends GridComponent {
             flexWrap: 'wrap',
             justifyContent: position(justify),
             alignItems: position(align)
-        };
+        });
 
         return (
             <div {...others}>
