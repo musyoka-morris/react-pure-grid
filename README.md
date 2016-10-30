@@ -133,11 +133,11 @@ Accepts one of `start|center|end`. Horizontal alignment of Cols when they don't 
 __*__  `number` 
 Number of columns [1-12] to use as `Col` width
 
-**\*Offset**  `number` 
+__*Offset__  `number` 
 Number of columns [1-12] to offset
 
 
-**Note**: _**\*** is a key in `breakPoints` object_
+**Note**: ___*__ is a key in `breakPoints` object_
 **Example**: `<Col md={4} xsOffset={2}>Col Content</Col>`
 
 
