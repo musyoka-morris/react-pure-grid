@@ -137,7 +137,7 @@ __*Offset__  `number`
 Number of columns [1-12] to offset
 
 
-**Note**: ___*__ is a key in `breakPoints` object_
+**Note**: _** \* ** is a key in `breakPoints` object_
 **Example**: `<Col md={4} xsOffset={2}>Col Content</Col>`
 
 
