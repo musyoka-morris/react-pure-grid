@@ -130,7 +130,7 @@ Accepts one of `start|center|end`. Horizontal alignment of Cols when they don't 
 
 
 ### 3. Col
-**\***  `number` 
+__*__  `number` 
 Number of columns [1-12] to use as `Col` width
 
 **\*Offset**  `number` 
