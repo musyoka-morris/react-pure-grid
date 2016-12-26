@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import prefix from '../src/prefix';
-import {PureGridProvider, Container, Row, Col, ClearFix} from '../index';
+import {PureGridProvider, Container, Row, Col} from '../index';
 
 const Style = prefix({
     row : {
@@ -14,14 +14,10 @@ const Style = prefix({
 
     col: {
         textAlign: 'center',
-        borderRadius: 5,
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingRight: 4,
-        paddingLeft: 4,
-        marginBottom: 4,
         fontSize: 12,
         fontWeight: 'bold',
+        lineHeight: '300%',
+        borderRadius: 5,
         borderSize: 1,
         borderStyle: "solid",
         borderColor: "silver"
@@ -63,17 +59,17 @@ const SimpleGrid = (
             </Row>
             <Row style={Style.row} align="start">
                 <Col xs={4} style={tallCol(50)}>align: start</Col>
-                <Col xs={4} style={tallCol(20)}>align: start</Col>
+                <Col xs={4} style={tallCol(35)}>align: start</Col>
                 <Col xs={4} style={tallCol(70)}>align: start</Col>
             </Row>
             <Row style={Style.row} align="center">
                 <Col xs={4} style={tallCol(50)}>align: center</Col>
-                <Col xs={4} style={tallCol(20)}>align: center</Col>
+                <Col xs={4} style={tallCol(35)}>align: center</Col>
                 <Col xs={4} style={tallCol(70)}>align: center</Col>
             </Row>
             <Row style={Style.row} align="end">
                 <Col xs={4} style={tallCol(50)}>align: end</Col>
-                <Col xs={4} style={tallCol(20)}>align: end</Col>
+                <Col xs={4} style={tallCol(35)}>align: end</Col>
                 <Col xs={4} style={tallCol(70)}>align: end</Col>
             </Row>
             <Row style={Style.row} justify="start">
@@ -99,7 +95,7 @@ const SimpleGrid = (
             </Row>
             <Row style={Style.row}>
                 <Col md={6} style={Style.col}>
-                    <Row gutter={5}>
+                    <Row>
                         <Col style={Style.col}>Nested columns</Col>
                         <Col md={6} style={Style.col}>Nested</Col>
                         <Col md={6} style={Style.col}>Nested</Col>

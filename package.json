@@ -1,49 +1,8 @@
 {
-  "name": "react-pure-grid",
-  "version": "2.1.0",
-  "description": "A highly customizable set of React components that mirror bootstrap responsive grid system, AND not dependent on any css file",
-  "homepage": "https://github.com/musyoka-morris/react-pure-grid",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/musyoka-morris/react-pure-grid.git"
-  },
-  "bugs": {
-    "url": "https://github.com/musyoka-morris/react-pure-grid/issues"
-  },
-  "main": "index.js",
-  "dependencies": {
-    "inline-style-prefixer": "^2.0.1",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8"
-  },
-  "devDependencies": {
-    "babel-preset-es2015": "^6.5.0",
-    "babel-preset-node5": "^11.1.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-preset-stage-2": "^6.5.0",
-    "babelify": "^7.2.0",
-    "browserify": "^13.0.0"
-  },
-  "scripts": {
-    "build": "browserify -t [ babelify --presets [ es2015 stage-0 node5 react ] ] examples/main.js -o examples/bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "react-component",
-    "responsive grid",
-    "bootstrap grid",
-    "bootstrap layout",
-    "flexbox",
-    "grid",
-    "react",
-    "browser"
-  ],
   "author": {
     "name": "Musyoka Morris",
     "email": "musyokamorris@gmail.com"
   },
-  "license": "MIT",
   "babel": {
     "presets": [
       "es2015",
@@ -56,9 +15,53 @@
       "babelify"
     ]
   },
-  "readme": "# React-Pure-Grid\r\nReact-Pure-Grid is a set of React components that mirror Bootstrap grid system. This library harmoniously integrates with your React project and it's easily customizable and very flexible. \r\n\r\nReact-Pure-Grid is **NOT** dependent on any external css files.\r\n\r\n## Installation\r\nReact-Pure-Grid is available as an npm package.\r\n```\r\nnpm install react-pure-grid --save\r\n```\r\n\r\n## Usage\r\nUsing React-Pure-Grid is very straightforward. Once react-pure-grid is included in your project, you can use the components this way:\r\n\r\n```js\r\nimport {Container, Row, Col} from 'react-pure-grid';\r\n\r\nconst App = () => (\r\n      <Container>\r\n        <Row>\r\n          <Col xs={6} md={4} lg={3}>Hello, world!</Col>\r\n        </Row>\r\n        <Row>\r\n            <Col xsOffset={5} xs={7}>Welcome!</Col>\r\n        </Row>\r\n      </Container>\r\n);\r\n```\r\n\r\n##Customization\r\nBeginning with v2.0.0, Styling the grid system to your liking is simple and hassle-free. This can be achieved by using the `PureGridProvider` to inject the customizations into your application context. Following that, you can to use any of the components as demonstrated in the documentation.\r\n\r\nThe following are the possible customizations:\r\n\r\n| prop                      | default   | explanation |\r\n| :------------------------ | :-------- | :---------- |\r\n| **gutterSize**            | `15`      | The gutter size to separate cols |\r\n| **maxWidth**              | `1170`    | Maximum container width |\r\n| **breakPoints**           | *As Given Below* | **browser**: *The browser width*, <br/> **container**: *Width to apply to container* |\r\n| **replaceBreakPoints**    | `false`   | This determines whether to merge or replace the provided `breakPoints` with the `default breakPoints` <br/> *We highly recommend you leave this untouched*  |\r\n\r\n\r\n##### Default breakPoints\r\n```js\r\n{\r\n   lg: {\r\n      browser: 1200,\r\n      container: 1170\r\n  },\r\n  md: {\r\n      browser: 992,\r\n      container: 870\r\n  },\r\n  sm: {\r\n      browser: 768,\r\n      container: 750\r\n  },\r\n  xs: {\r\n      browser: 0,\r\n      container: 'auto'\r\n  }\r\n}\r\n```\r\n\r\nHere is a quick example to get you started:\r\n\r\n###./App.js\r\n\r\n```js\r\nimport React from 'react';\r\nimport {render} from 'react-dom';\r\nimport {PureGridProvider} from 'react-pure-grid';\r\nimport MyAwesomeReactComponent from './MyAwesomeReactComponent';\r\n\r\nconst App = () => (\r\n  <PureGridProvider gutterSize={4}>\r\n    <MyAwesomeReactComponent />\r\n  </PureGridProvider>\r\n);\r\n\r\nrender(<App />, document.getElementById('app'));\r\n```\r\n\r\n\r\n###./MyAwesomeReactComponent.js\r\n\r\n```js\r\nimport React from 'react';\r\nimport {Container, Row, Col} from 'react-pure-grid';\r\n\r\nconst MyAwesomeReactComponent = () => (\r\n  <Container>\r\n    <Row>\r\n        <Col xs={12} md={6}>\r\n            My Col Data\r\n        </Col>\r\n    </Row>\r\n  </Container>\r\n);\r\n\r\nexport default MyAwesomeReactComponent;\r\n```\r\n\r\n##Components\r\n\r\n### 1. Container\r\n| prop                      | default   | explanation |\r\n| :------------------------ | :-------- | :---------- |\r\n| **fluid**            | `true`      | Fluid or Fixed-Width layout |\r\n\r\n### 2. Row\r\n| prop                      | default   | explanation |\r\n| :------------------------ | :-------- | :---------- |\r\n| **reverse**            | `false`      | Set to `true` to output `Cols` in reverse order |\r\n| **align**            | `start`      | Accepts either `start | center | end` <br/> Vertical alignment of `Cols` with varying heights |\r\n| **justify**            | `start`      | Accepts either `start | center | end` <br/> Horizontal alignment of `Cols` when they don't occupy full width |\r\n\r\n### 3. Col\r\n| prop                      | Accepts   | explanation |\r\n| :------------------------ | :-------- | :---------- |\r\n| **\\***          | number | Number of columns [1-12] to use as `Col` width |\r\n| ***Offset**            | number | Number of columns [1-12] to offset |\r\n\r\n**Note**: *__\\*__ is a key in `breakPoints` object*\r\n\r\n**Example**: `<Col md={4} xsOffset={2}>Col Content</Col>`\r\n\r\n## Browser Support\r\nSupported in all major browsers\r\n\r\n## Contribute\r\nIf you have a feature request, please add it as an issue or make a pull request.\r\n\r\n## License\r\nMIT",
-  "readmeFilename": "README.md",
-  "_id": "react-pure-grid@2.0.1",
-  "_shasum": "0a93aaec45c3d6ed0ec9b037b7ab4bd1b4572db9",
-  "_from": "react-pure-grid@>=2.0.1 <3.0.0"
+  "bugs": {
+    "url": "https://github.com/musyoka-morris/react-pure-grid/issues"
+  },
+  "dependencies": {
+    "inline-style-prefixer": "^2.0.1",
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8"
+  },
+  "description": "A highly customizable set of React components that mirror bootstrap responsive grid system, AND not dependent on any css file",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-node5": "^11.1.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.0"
+  },
+  "directories": {},
+  "homepage": "https://github.com/musyoka-morris/react-pure-grid",
+  "keywords": [
+    "react-component",
+    "responsive grid",
+    "bootstrap grid",
+    "bootstrap layout",
+    "flexbox",
+    "grid",
+    "react",
+    "browser"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "musyoka-morris",
+      "email": "musyokamorris@gmail.com"
+    }
+  ],
+  "name": "react-pure-grid",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/musyoka-morris/react-pure-grid.git"
+  },
+  "scripts": {
+    "build": "browserify -t [ babelify --presets [ es2015 stage-0 node5 react ] ] examples/main.js -o examples/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.1.1"
 }
